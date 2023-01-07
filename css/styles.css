@@ -100,3 +100,17 @@
     max-width: 500px;
     margin: 0 auto;
 }
+
+/* MOBILE */
+
+@media(max-width: 480px) {
+    #home-link {
+        display: none;
+        padding-left: 10px;
+    }
+
+    #add-contact {
+        padding-right: 10px;
+    }
+    
+}
