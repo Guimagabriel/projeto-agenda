@@ -63,11 +63,34 @@
                 $error = $e->getMessage();
                 echo "Error: $error";
             }
-        }
 
-    //Redirect HOME
-    header("Location:" . $BASE_URL . "/../index.php");
-    //SELEÇÃO DE DADOS
+        //Excluir contato
+        } else if($data["type"] === "delete") {
+
+            $id = $data["id"];
+
+            $query = "DELETE FROM contacts WHERE id = :id";
+
+            $stmt = $conn->prepare($query);
+
+            $stmt->bindParam(":id", $id);
+
+            try {
+                
+                $stmt->execute();
+                $_SESSION["msg"] = "Contato removido com sucesso";
+
+            } catch(PDOException $e) {
+                //erro na conexao
+                $error = $e->getMessage();
+                echo "Error: $error";
+            }
+        }
+    
+
+        //Redirect HOME
+        header("Location:" . $BASE_URL . "/../index.php");
+        //SELEÇÃO DE DADOS
     }   else {
 
         $id;
